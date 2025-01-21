@@ -41,7 +41,29 @@ function shoppingCartReducer(state, action) {
       items: updatedItems,
     };
   }
- 
+  if (action.type === "UPDATE_ITEM") {
+    const updatedItems = [...state.items];
+    const updatedItemIndex = updatedItems.findIndex(
+      (item) => item.id === action.payload.productId
+    );
+    console.log(updatedItems)
+    console.log(updatedItemIndex);
+    const updatedItem = {
+      ...updatedItems[updatedItemIndex],
+    };
+
+    updatedItem.quantity += action.payload.amount;
+
+    if (updatedItem.quantity <= 0) {
+      updatedItems.splice(updatedItemIndex, 1);
+    } else {
+      updatedItems[updatedItemIndex] = updatedItem;
+    }
+
+    return {
+      items: updatedItems,
+    };
+  }
   return state;
 }
 export default function CartContextProvider({ children }) {
