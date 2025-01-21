@@ -69,16 +69,17 @@ function App() {
 
   return (
     <CartContext.Provider
-      value={{ items: shoppingCart.items, addItemToCart: handleAddItemToCart }}
+      value={{
+        items: shoppingCart.items,
+        addItemToCart: handleAddItemToCart,
+        updateItemsQuantity: handleUpdateCartItemQuantity,
+      }}
     >
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
+      <Header onUpdateCartItemQuantity={handleUpdateCartItemQuantity} />
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product}  />
+            <Product {...product} />
           </li>
         ))}
       </Shop>
