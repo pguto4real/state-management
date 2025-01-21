@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createContext } from "react";
 import { DUMMY_PRODUCTS } from "../dummy-products";
 import { useReducer } from "react";
@@ -46,7 +45,7 @@ function shoppingCartReducer(state, action) {
     const updatedItemIndex = updatedItems.findIndex(
       (item) => item.id === action.payload.productId
     );
-    console.log(updatedItems)
+    console.log(updatedItems);
     console.log(updatedItemIndex);
     const updatedItem = {
       ...updatedItems[updatedItemIndex],
