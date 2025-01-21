@@ -14,12 +14,14 @@ function shoppingCartReducer(state, action) {
 }
 export default function CartContextProvider({ children }) {
   const [shoppingCartState, shoppingCartDispatch] = useReducer(
-    shoppingCartDispatch,
+    shoppingCartReducer,
     {
       items: [],
     }
   );
-
+  const [shoppingCart, setShoppingCart] = useState({
+    items: [],
+  });
   function handleAddItemToCart(id) {
     setShoppingCart((prevShoppingCart) => {
       const updatedItems = [...prevShoppingCart.items];
@@ -77,7 +79,7 @@ export default function CartContextProvider({ children }) {
   }
 
   const cartCtxValue = {
-    items: shoppingCart.items,
+    items: shoppingCartState.items,
     addItemToCart: handleAddItemToCart,
     updateItemsQuantity: handleUpdateCartItemQuantity,
   };
