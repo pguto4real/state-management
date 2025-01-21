@@ -75,7 +75,7 @@ function App() {
         updateItemsQuantity: handleUpdateCartItemQuantity,
       }}
     >
-      <Header onUpdateCartItemQuantity={handleUpdateCartItemQuantity} />
+      <Header />
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
