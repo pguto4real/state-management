@@ -7,8 +7,6 @@ import Product from "./components/Product.jsx";
 import { CartContext } from "./store/shopping-cart-context.jsx";
 
 function App() {
-
-
   const [shoppingCart, setShoppingCart] = useState({
     items: [],
   });
@@ -70,7 +68,9 @@ function App() {
   }
 
   return (
-    <CartContext.Provider>
+    <CartContext.Provider
+      value={{ items: shoppingCart.items, addItemToCart: handleAddItemToCart }}
+    >
       <Header
         cart={shoppingCart}
         onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
@@ -78,7 +78,7 @@ function App() {
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
+            <Product {...product}  />
           </li>
         ))}
       </Shop>
